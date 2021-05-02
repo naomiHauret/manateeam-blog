@@ -1,0 +1,10 @@
+{
+  "name": "manateeam-blog",
+  "version": "1.0.0",
+  "description": "Manateeam blog",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Naomi Hauret",
+  "license": "MIT"
+}
