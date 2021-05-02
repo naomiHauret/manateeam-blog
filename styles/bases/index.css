@@ -1,0 +1,166 @@
+/*
+  Normalize
+*/
+@import-normalize;
+
+/*
+  Base styles
+*/
+*,
+*::before,
+*::after {
+  border-width: 0;
+  border-style: solid;
+  box-sizing: border-box;
+}
+
+html {
+  @apply text-px subpixel-antialiased overflow-x-hidden;
+  scroll-behavior: smooth-scroll;
+  line-height: 1.5;
+  text-size-adjust: 100%;
+  text-rendering: optimizelegibility;
+  font-variant-numeric: proportional-nums;
+}
+
+body {
+  @apply flex flex-col min-h-screen font-body;
+  font-size: 1rem;
+}
+
+#__next {
+  @apply flex flex-col flex-grow;
+}
+
+a {
+  background-color: transparent;
+  color: inherit;
+  text-decoration: inherit;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button::-moz-focus-inner,
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+[type='checkbox'],
+[type='radio'] {
+  box-sizing: border-box;
+  padding: 0;
+}
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none !important;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+fieldset,
+legend,
+body,
+blockquote,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre,
+ul,
+ol {
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+fieldset,
+legend,
+input,
+optgroup,
+select,
+textarea,
+button,
+ol,
+ul {
+  padding: 0;
+}
+
+button::-moz-focus-inner {
+  border: 0 !important;
+}
+
+table {
+  border-collapse: collapse;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-heading;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  padding: 0;
+  background-color: transparent;
+  line-height: inherit;
+  color: inherit;
+}
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+select::-ms-expand {
+  display: none;
+}
