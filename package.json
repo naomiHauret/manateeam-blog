@@ -1,10 +1,63 @@
 {
   "name": "manateeam-blog",
+  "author": "Naomi Hauret",
+  "license": "MIT",
   "version": "1.0.0",
   "description": "Manateeam blog",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "setup": "npm install && npm run prepare",
+    "prepare": "husky install",
+    "dev": "next",
+    "prod:build": "next build",
+    "prod": "npm run prod:build && next start",
+    "start": "npm run dev",
+    "lint": "eslint .",
+    "css:prettify": "prettier --parser=css --write \"./{pages,components,styles}/**/*.css\"",
+    "js:prettify": "prettier --parser=babel --write \"./{components,pages,hooks,contexts,styles,libs,utils,tests}/**/*.{js,ts}\"",
+    "format": "npm run css:prettify && npm run js:prettify",
+    "cm": "cz",
+    "postbuild": "next-sitemap"
   },
-  "author": "Naomi Hauret",
-  "license": "MIT"
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+      "pre-add": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{css}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{js,ts}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "not dead"
+  ],
+  "dependencies": {
+    "next": "^10.2.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.0",
+    "browserslist": "^4.16.6",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.25.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1"
+  }
 }
