@@ -3,7 +3,7 @@
   "author": "Naomi Hauret",
   "license": "MIT",
   "version": "1.0.0",
-  "description": "Manateeam blog",
+  "description": "Manateeam blog (with a twist)",
   "scripts": {
     "setup": "npm install && npm run prepare",
     "prepare": "husky install",
@@ -11,9 +11,9 @@
     "prod:build": "next build",
     "prod": "npm run prod:build && next start",
     "start": "npm run dev",
-    "lint": "eslint .",
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "css:prettify": "prettier --parser=css --write \"./{pages,components,styles}/**/*.css\"",
-    "js:prettify": "prettier --parser=babel --write \"./{components,pages,hooks,contexts,styles,libs,utils,tests}/**/*.{js,ts}\"",
+    "js:prettify": "prettier --parser=babel --write \"./{components,pages,hooks,contexts,styles,libs,utils,tests}/**/*.{js,ts,tsx}\"",
     "format": "npm run css:prettify && npm run js:prettify",
     "cm": "cz",
     "postbuild": "next-sitemap"
@@ -25,6 +25,10 @@
     }
   },
   "lint-staged": {
+    "*.{json": [
+      "prettier --write",
+      "git add"
+    ],
     "*.{css}": [
       "prettier --write",
       "git add"
@@ -53,6 +57,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",
+    "@types/node": "^15.0.1",
+    "@types/react": "^17.0.4",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
     "autoprefixer": "^10.2.5",
     "browserslist": "^4.16.6",
     "cz-conventional-changelog": "^3.3.0",
@@ -68,6 +76,7 @@
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.2.1",
     "tailwindcss": "^2.1.2",
-    "tailwindcss-logical": "^1.4.0"
+    "tailwindcss-logical": "^1.4.0",
+    "typescript": "^4.2.4"
   }
 }
