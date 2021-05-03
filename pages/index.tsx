@@ -3,9 +3,24 @@ import Prismic from 'prismic-javascript'
 import { RichText } from 'prismic-reactjs'
 import { linkResolver } from '@utils/prismic'
 import Link from 'next/link'
+import { RichTextBlock } from 'prismic-reactjs'
+
+type InternalLink = {
+  title: string,
+  href: string,
+}
+
+export type PageHomeProps = {
+  content: {
+    h1_title: string,
+    main_text: RichTextBlock[],
+    rich_text: RichTextBlock[],
+  },
+  articles: InternalLink[],
+}
 
 const Page = (props) => {
-  const { content, articles } = props
+  const { content, articles }: PageHomeProps = props
   return (
     <div>
       <h1>{content.h1_title}</h1>
@@ -13,7 +28,7 @@ const Page = (props) => {
         <ul>
           {articles.map((article, i) => (
             <li key={i}>
-              <Link href={article.href} pathname={'/[article_slug]'}>
+              <Link href={article.href}>
                 <a>{article.title}</a>
               </Link>
             </li>
@@ -28,7 +43,10 @@ const Page = (props) => {
   )
 }
 
-export async function getStaticProps({ locale }) {
+export type PageHome_GetStaticProps = {
+  locale: string,
+}
+export async function getStaticProps({ locale }: PageHome_GetStaticProps) {
   try {
     // Fetch all the articles
     const articles = await Client().query([Prismic.Predicates.at('document.type', 'article_page')])
