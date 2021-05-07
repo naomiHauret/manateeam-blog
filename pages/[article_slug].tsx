@@ -4,14 +4,20 @@ import { RichText } from 'prismic-reactjs'
 import { linkResolver } from '@utils/prismic'
 import { RichTextBlock } from 'prismic-reactjs'
 
-export type PageArticleProps = {
+type Author = {
+  name: 'timotej' | 'naomi'
+}
+type Article = {
   title: string,
-  author: 'Timotej' | 'Naomi',
+  author: Author,
   content: RichTextBlock[],
 }
+interface IArticleProps {
+  article: Article
+}
 
-const Page = ({ article }) => {
-  const { title, author, content }: PageArticleProps = article
+const Page = (props: IArticleProps)  => {
+  const { article: { title, author, content }} = props
   return (
     <div>
       <h1>{title}</h1>
@@ -35,13 +41,13 @@ export async function getStaticPaths() {
   }
 }
 
-type PageArticle_GetStaticProps = {
+interface IPageArticle_GetStaticProps {
   params: {
-    article_slug: string,
-  },
+    article_slug: string
+  }
 }
 
-export async function getStaticProps({ params: { article_slug } }: PageArticle_GetStaticProps) {
+export async function getStaticProps({ params: { article_slug } }: IPageArticle_GetStaticProps) {
   try {
     const article = await Client().getByUID('article_page', article_slug, {})
     return {
