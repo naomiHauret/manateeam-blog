@@ -35,5 +35,9 @@
   ],
   "exclude": [
     "node_modules"
+  ],
+  "types": [
+    "cypress",
+    "cypress-axe"
   ]
 }

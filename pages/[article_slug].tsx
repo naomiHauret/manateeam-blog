@@ -5,7 +5,7 @@ import { linkResolver } from '@utils/prismic'
 import { RichTextBlock } from 'prismic-reactjs'
 
 type Author = {
-  name: 'timotej' | 'naomi'
+  name: 'timotej' | 'naomi',
 }
 type Article = {
   title: string,
@@ -13,11 +13,13 @@ type Article = {
   content: RichTextBlock[],
 }
 interface IArticleProps {
-  article: Article
+  article: Article;
 }
 
-const Page = (props: IArticleProps)  => {
-  const { article: { title, author, content }} = props
+const Page = (props: IArticleProps) => {
+  const {
+    article: { title, author, content },
+  } = props
   return (
     <div>
       <h1>{title}</h1>
@@ -43,8 +45,8 @@ export async function getStaticPaths() {
 
 interface IPageArticle_GetStaticProps {
   params: {
-    article_slug: string
-  }
+    article_slug: string,
+  };
 }
 
 export async function getStaticProps({ params: { article_slug } }: IPageArticle_GetStaticProps) {
